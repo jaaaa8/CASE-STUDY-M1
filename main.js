@@ -53,6 +53,20 @@ let maxChangeCounts = [4,4, 4, 5];
 let currentChangeCount = maxChangeCounts[currentArrayIndex];
 let originalArray = JSON.parse(JSON.stringify(array[currentArrayIndex]));
 
+// nút bật tắt âm
+const backgroundMusic = document.getElementById('backgroundMusic');
+const muteButton = document.getElementById('muteButton');
+
+muteButton.addEventListener('click', function () {
+    if (backgroundMusic.muted) {
+        backgroundMusic.muted = false;
+        muteButton.innerText = '🔊';
+    } else {
+        backgroundMusic.muted = true;
+        muteButton.innerText = '🔇';
+    }
+});
+
 // Cập nhật hiển thị số lượt thay đổi
 document.getElementById("changeCount").innerText = `Còn ${currentChangeCount} lượt`;
 
@@ -69,8 +83,6 @@ document.getElementById("blue").addEventListener("click", function () {
 document.getElementById("green").addEventListener("click", function () {
     setSelectedColor(this, 'green');
 });
-
-// Thêm sự kiện cho nút RESET
 document.getElementById("reset").addEventListener("click", function () {
     resetCurrentLevel();
 });
@@ -121,17 +133,13 @@ function changeColor(button, i, j) {
         }
     }
 
-    // Kiểm tra xem đã hoàn thành level chưa
     if (isLevelComplete()) {
         setTimeout(() => {
             if (currentArrayIndex === array.length - 1) {
-                // Phát âm thanh hoàn thành game
                 const gameCompleteSound = document.getElementById("levelCompleted");
                 gameCompleteSound.play();
-
                 alert('Chúc mừng! Bạn đã hoàn thành toàn bộ game!');
             } else {
-                // Phát âm thanh hoàn thành level
                 const levelCompleteSound = document.getElementById("levelCompleted");
                 levelCompleteSound.play();
 
@@ -175,13 +183,10 @@ function floodFill(i, j, oldColor, newColor) {
     if (i < 0 || i >= currentArray.length || j < 0 || j >= 10) {
         return;
     }
-
     if (currentArray[i][j] !== oldColor) {
         return;
     }
-
     currentArray[i][j] = newColor;
-
     drawGameForm(currentArray);
 
     // Kiểm tra các nút liền kề: (i+1, j), (i-1, j), (i, j+1), (i, j-1)
