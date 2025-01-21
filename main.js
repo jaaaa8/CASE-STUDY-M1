@@ -54,7 +54,7 @@ let currentChangeCount = maxChangeCounts[currentArrayIndex];
 let originalArray = JSON.parse(JSON.stringify(array[currentArrayIndex]));
 
 // Cập nhật hiển thị số lượt thay đổi
-document.getElementById("changeCount").innerText = `${currentChangeCount}`;
+document.getElementById("changeCount").innerText = `Còn ${currentChangeCount} lượt`;
 
 // Thêm sự kiện cho các nút màu
 document.getElementById("red").addEventListener("click", function () {
@@ -111,7 +111,7 @@ function changeColor(button, i, j) {
         floodFill(i, j, oldColor, selectedColor);
 
         currentChangeCount--;
-        document.getElementById("changeCount").innerText = `${currentChangeCount}`;
+        document.getElementById("changeCount").innerText = `Còn ${currentChangeCount} lượt`;
 
         if (currentChangeCount === 0) {
             setTimeout(() => {
@@ -124,11 +124,23 @@ function changeColor(button, i, j) {
     // Kiểm tra xem đã hoàn thành level chưa
     if (isLevelComplete()) {
         setTimeout(() => {
-            let proceed = confirm('Chúc mừng! Bạn đã hoàn thành level này. Bạn có muốn sang level tiếp theo không?');
-            if (proceed) {
-                changeLevel(currentArrayIndex + 1);
+            if (currentArrayIndex === array.length - 1) {
+                // Phát âm thanh hoàn thành game
+                const gameCompleteSound = document.getElementById("levelCompleted");
+                gameCompleteSound.play();
+
+                alert('Chúc mừng! Bạn đã hoàn thành toàn bộ game!');
             } else {
-                resetCurrentLevel();
+                // Phát âm thanh hoàn thành level
+                const levelCompleteSound = document.getElementById("levelCompleted");
+                levelCompleteSound.play();
+
+                let proceed = confirm('Chúc mừng! Bạn đã hoàn thành level này. Bạn có muốn sang level tiếp theo không?');
+                if (proceed) {
+                    changeLevel(currentArrayIndex + 1);
+                } else {
+                    resetCurrentLevel();
+                }
             }
         }, 100);
     }
@@ -138,7 +150,7 @@ function changeColor(button, i, j) {
 function resetCurrentLevel() {
     currentArray = JSON.parse(JSON.stringify(originalArray));
     currentChangeCount = maxChangeCounts[currentArrayIndex];
-    document.getElementById("changeCount").innerText = currentChangeCount;
+    document.getElementById("changeCount").innerText = `Còn ${currentChangeCount} lượt`;
     drawGameForm(currentArray);
     if (selectedButton) {
         selectedButton.classList.remove('active');
@@ -150,7 +162,7 @@ function resetGame() {
     currentArray = JSON.parse(JSON.stringify(originalArray));
     drawGameForm(currentArray);
     currentChangeCount = maxChangeCounts[currentArrayIndex];
-    document.getElementById("changeCount").innerText = currentChangeCount;
+    document.getElementById("changeCount").innerText = `Còn ${currentChangeCount} lượt`;
     document.getElementById("level").innerText = `Level ${currentArrayIndex + 1} ${["RED", "GREEN", "RED"][currentArrayIndex]}`;
     if (selectedButton) {
         selectedButton.classList.remove('active');
@@ -197,7 +209,7 @@ function changeLevel(levelIndex) {
         currentArray = array[currentArrayIndex];
         originalArray = JSON.parse(JSON.stringify(currentArray));
         currentChangeCount = maxChangeCounts[currentArrayIndex];
-        document.getElementById("changeCount").innerText = currentChangeCount;
+        document.getElementById("changeCount").innerText = `Còn ${currentChangeCount} lượt`;
         const levelColors = ["YELLOW", "RED", "BLUE", "RED"];
         const levelNames = ["Level 0", "Level 1", "Level 2", "Level 3"];
         const levelColor = levelColors[currentArrayIndex];
