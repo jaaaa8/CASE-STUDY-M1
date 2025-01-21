@@ -1,6 +1,18 @@
 let selectedColor = 'red';
 let selectedButton = null;
 
+
+let arrayLV0 = [
+    ['yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow'],
+    ['yellow', 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'yellow'],
+    ['yellow', 'red'   , 'green' , 'green' , 'green' , 'green' , 'green' , 'green' , 'red'   , 'yellow'],
+    ['yellow', 'red'   , 'green' , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'green' , 'red'   , 'yellow'],
+    ['yellow', 'red'   , 'green' , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'green' , 'red'   , 'yellow'],
+    ['yellow', 'red'   , 'green' , 'green' , 'green' , 'green' , 'green' , 'green' , 'red'   , 'yellow'],
+    ['yellow', 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'yellow'],
+    ['yellow', 'yellow', 'yellow','yellow' , 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow']
+];
+
 let arrayLV1 = [
     ['yellow', 'red'   , 'yellow', 'yellow', 'yellow', 'blue'  , 'green' , 'yellow', 'blue'  , 'yellow'],
     ['blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'green' , 'yellow', 'blue'  , 'yellow'],
@@ -34,9 +46,15 @@ let arrayLV3 = [
     ['yellow', 'yellow', 'green' , 'green' , 'green' , 'red'   , 'blue'  , 'yellow', 'yellow', 'yellow']
 ];
 
-let array = [arrayLV1, arrayLV2, arrayLV3];
+let array = [arrayLV0,arrayLV1, arrayLV2, arrayLV3];
 let currentArrayIndex = 0;
 let currentArray = array[currentArrayIndex];
+let maxChangeCounts = [4,4, 4, 5];
+let currentChangeCount = maxChangeCounts[currentArrayIndex];
+let originalArray = JSON.parse(JSON.stringify(array[currentArrayIndex]));
+
+// Cập nhật hiển thị số lượt thay đổi
+document.getElementById("changeCount").innerText = `${currentChangeCount}`;
 
 // Thêm sự kiện cho các nút màu
 document.getElementById("red").addEventListener("click", function () {
@@ -50,6 +68,11 @@ document.getElementById("blue").addEventListener("click", function () {
 });
 document.getElementById("green").addEventListener("click", function () {
     setSelectedColor(this, 'green');
+});
+
+// Thêm sự kiện cho nút RESET
+document.getElementById("reset").addEventListener("click", function () {
+    resetCurrentLevel();
 });
 
 drawGameForm(currentArray);
@@ -84,38 +107,107 @@ function setSelectedColor(button, color) {
 function changeColor(button, i, j) {
     let oldColor = currentArray[i][j];
 
-    // Kiểm tra nếu màu chọn khác với màu hiện tại thì tiến hành thay đổi
     if (oldColor !== selectedColor) {
         floodFill(i, j, oldColor, selectedColor);
+
+        currentChangeCount--;
+        document.getElementById("changeCount").innerText = `${currentChangeCount}`;
+
+        if (currentChangeCount === 0) {
+            setTimeout(() => {
+                alert("Bạn đã hết số lượt thay đổi. Trò chơi sẽ được reset.");
+                resetGame();
+            }, 100);
+        }
     }
+
+    // Kiểm tra xem đã hoàn thành level chưa
+    if (isLevelComplete()) {
+        setTimeout(() => {
+            let proceed = confirm('Chúc mừng! Bạn đã hoàn thành level này. Bạn có muốn sang level tiếp theo không?');
+            if (proceed) {
+                changeLevel(currentArrayIndex + 1);
+            } else {
+                resetCurrentLevel();
+            }
+        }, 100);
+    }
+}
+
+// Hàm khôi phục level hiện tại về trạng thái ban đầu
+function resetCurrentLevel() {
+    currentArray = JSON.parse(JSON.stringify(originalArray));
+    currentChangeCount = maxChangeCounts[currentArrayIndex];
+    document.getElementById("changeCount").innerText = currentChangeCount;
+    drawGameForm(currentArray);
+    if (selectedButton) {
+        selectedButton.classList.remove('active');
+    }
+    selectedButton = null;
+}
+
+function resetGame() {
+    currentArray = JSON.parse(JSON.stringify(originalArray));
+    drawGameForm(currentArray);
+    currentChangeCount = maxChangeCounts[currentArrayIndex];
+    document.getElementById("changeCount").innerText = currentChangeCount;
+    document.getElementById("level").innerText = `Level ${currentArrayIndex + 1} ${["RED", "GREEN", "RED"][currentArrayIndex]}`;
+    if (selectedButton) {
+        selectedButton.classList.remove('active');
+    }
+    selectedButton = null;
 }
 
 // Hàm để thay đổi tất cả các nút liên kết cùng màu
 function floodFill(i, j, oldColor, newColor) {
     if (i < 0 || i >= currentArray.length || j < 0 || j >= 10) {
-        return; // Nếu ngoài phạm vi thì dừng lại
+        return;
     }
 
     if (currentArray[i][j] !== oldColor) {
-        return; // Nếu màu không phải màu cũ thì dừng lại
+        return;
     }
 
-    // Thay đổi màu cho nút
     currentArray[i][j] = newColor;
 
-    // Cập nhật lại giao diện
     drawGameForm(currentArray);
 
     // Kiểm tra các nút liền kề: (i+1, j), (i-1, j), (i, j+1), (i, j-1)
-    floodFill(i + 1, j, oldColor, newColor); // Kiểm tra phía dưới
-    floodFill(i - 1, j, oldColor, newColor); // Kiểm tra phía trên
-    floodFill(i, j + 1, oldColor, newColor); // Kiểm tra phía bên phải
-    floodFill(i, j - 1, oldColor, newColor); // Kiểm tra phía bên trái
+    floodFill(i + 1, j, oldColor, newColor);
+    floodFill(i - 1, j, oldColor, newColor);
+    floodFill(i, j + 1, oldColor, newColor);
+    floodFill(i, j - 1, oldColor, newColor);
 }
+
+function isLevelComplete() {
+    const targetColor = ['yellow','red', 'blue', 'red'][currentArrayIndex];
+    for (let i = 0; i < currentArray.length; i++) {
+        for (let j = 0; j < currentArray[i].length; j++) {
+            if (currentArray[i][j] !== targetColor) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 function changeLevel(levelIndex) {
     if (levelIndex >= 0 && levelIndex < array.length) {
         currentArrayIndex = levelIndex;
         currentArray = array[currentArrayIndex];
+        originalArray = JSON.parse(JSON.stringify(currentArray));
+        currentChangeCount = maxChangeCounts[currentArrayIndex];
+        document.getElementById("changeCount").innerText = currentChangeCount;
+        const levelColors = ["YELLOW", "RED", "BLUE", "RED"];
+        const levelNames = ["Level 0", "Level 1", "Level 2", "Level 3"];
+        const levelColor = levelColors[currentArrayIndex];
+        const levelName = levelNames[currentArrayIndex];
+        const levelElement = document.getElementById("level");
+        levelElement.innerText = `${levelName} ${levelColor}`;
+        levelElement.style.color = levelColor.toLowerCase();
         drawGameForm(currentArray);
     }
 }
+
+
+

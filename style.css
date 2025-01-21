@@ -21,9 +21,9 @@ html{
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Canh giữa theo chiều ngang */
-    align-items: center;    /* Canh giữa theo chiều dọc */
-    height: 60vh;          /* Chiều cao chiếm toàn màn hình */
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
     gap: 10px;
 }
 .description{
@@ -44,13 +44,13 @@ html{
     border-color: aliceblue;
     color: white;
     font-size: 20px;
-    cursor: pointer;          /* Con trỏ dạng tay khi rê chuột */
-    transition: all 0.3s ease; /* Hiệu ứng chuyển đổi mượt */
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 .btnPlay:hover{
     background-color: deepskyblue;
-    transform: scale(1.1);     /* Tăng kích thước nút */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Tạo bóng */
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .title{
     color: deepskyblue;
@@ -66,10 +66,10 @@ html{
 }
 .button-container {
     display: inline-block;
-    text-align: center; /* Đảm bảo nút được căn chỉnh theo chiều ngang */
+    text-align: center;
 }
 .button-container button {
-    margin: 3px; /* Khoảng cách giữa các nút */
+    margin: 3px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -84,41 +84,41 @@ html{
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.2s, background-color 0.3s;
-    border: 2px solid transparent; /* Mặc định không có viền */
+    border: 2px solid transparent;
 }
 
 #btnChangeColor #red {
-    background-color: red; /* Màu nền đỏ */
-    color: white; /* Màu chữ */
+    background-color: red;
+    color: white;
     border: 2px solid darkred;
 }
 
 #btnChangeColor #yellow {
-    background-color: yellow; /* Màu nền vàng */
-    color: black; /* Màu chữ */
+    background-color: yellow;
+    color: black;
     border: 2px solid goldenrod;
 }
 
 #btnChangeColor #blue {
-    background-color: blue; /* Màu nền xanh */
-    color: white; /* Màu chữ */
+    background-color: blue;
+    color: white;
     border: 2px solid darkblue;
 }
 
 #btnChangeColor #green {
-    background-color: green; /* Màu nền xanh lá */
-    color: white; /* Màu chữ */
+    background-color: green;
+    color: white;
     border: 2px solid darkgreen;
 }
 
 #btnChangeColor button:hover {
-    transform: scale(1.3); /* Phóng to khi rê chuột */
-    opacity: 0.9; /* Làm nhạt nền */
+    transform: scale(1.3);
+    opacity: 0.9;
 }
 
 #btnChangeColor button.active {
-    transform: scale(1.3); /* Hiệu ứng tương tự hover */
-    border-color: black; /* Viền đen cho nút được chọn */
+    transform: scale(1.3);
+    border-color: black;
 }
 
 
