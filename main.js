@@ -14,6 +14,17 @@ let arrayLV0 = [
 ];
 
 let arrayLV1 = [
+    ['yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow'],
+    ['yellow', 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'yellow'],
+    ['yellow', 'blue'  , 'green' , 'green' , 'green' , 'green' , 'green' , 'green' , 'blue'  , 'yellow'],
+    ['yellow', 'blue'  , 'green' , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'green' , 'blue'  , 'yellow'],
+    ['yellow', 'blue'  , 'green' , 'blue'  , 'green' , 'green' , 'green' , 'green' , 'blue'  , 'yellow'],
+    ['yellow', 'blue'  , 'green' , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'yellow'],
+    ['yellow', 'blue'  , 'green' , 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow'],
+    ['yellow', 'blue'  , 'blue'  , 'green' , 'green' , 'green' , 'green' , 'green' , 'green' , 'green' ]
+];
+
+let arrayLV2 = [
     ['yellow', 'red'   , 'yellow', 'yellow', 'yellow', 'blue'  , 'green' , 'yellow', 'blue'  , 'yellow'],
     ['blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'green' , 'yellow', 'blue'  , 'yellow'],
     ['yellow', 'red'   , 'blue'  , 'red'   , 'red'   , 'red'   , 'green' , 'red'   , 'blue'  , 'yellow'],
@@ -24,7 +35,7 @@ let arrayLV1 = [
     ['green' , 'green' , 'green' , 'green' , 'green' , 'green' , 'yellow', 'red'   , 'red'   , 'red'   ]
 ];
 
-let arrayLV2 = [
+let arrayLV3 = [
     ['yellow', 'red'   , 'red'   , 'blue'  , 'yellow', 'yellow', 'yellow', 'yellow', 'blue'  , 'yellow'],
     ['yellow', 'red'   , 'red'   , 'blue'  , 'yellow', 'yellow', 'yellow', 'yellow', 'blue'  , 'yellow'],
     ['green' , 'green' , 'green' , 'green' , 'green' , 'green' , 'green' , 'green' , 'green' , 'green' ],
@@ -35,7 +46,29 @@ let arrayLV2 = [
     ['yellow', 'red'   , 'red'   , 'blue'  , 'yellow', 'yellow', 'yellow', 'yellow', 'blue'  , 'yellow']
 ];
 
-let arrayLV3 = [
+let arrayLV4 = [
+    ['red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  ],
+    ['red'   , 'blue'  , 'blue'  , 'blue'  , 'red'   , 'blue'  , 'green' , 'green' , 'green' , 'green' ],
+    ['red'   , 'blue'  , 'blue'  , 'blue'  , 'red'   , 'blue'  , 'green' , 'blue'  , 'blue'  , 'green' ],
+    ['red'   , 'blue'  , 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'green' ],
+    ['red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'blue'  , 'green' , 'green' , 'green' , 'green' ],
+    ['blue'  , 'blue'  , 'yellow', 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'yellow', 'blue'  ],
+    ['blue'  , 'blue'  , 'yellow', 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'yellow', 'blue'  ],
+    ['blue'  , 'blue'  , 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow']
+];
+
+let arrayLV5 = [
+    ['yellow', 'yellow', 'red'   , 'red'   , 'yellow', 'yellow', 'red'   , 'red'   , 'yellow', 'yellow'],
+    ['yellow', 'blue'  , 'red'   , 'blue'  , 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'yellow'],
+    ['blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'red'   , 'green' , 'red'   , 'green' , 'red'   ],
+    ['blue'  , 'blue'  , 'blue'  , 'blue'  , 'blue'  , 'green' , 'green' , 'green' , 'green' , 'green' ],
+    ['red'   , 'blue'  , 'blue'  , 'blue'  , 'red'   , 'green' , 'green' , 'green' , 'green' , 'green' ],
+    ['yellow', 'red'   , 'blue'  , 'red'   , 'red'   , 'red'   , 'green' , 'green' , 'green' , 'yellow'],
+    ['yellow', 'yellow', 'red'   , 'red'   , 'red'   , 'red'   , 'red'   , 'green' , 'yellow', 'yellow'],
+    ['yellow', 'yellow', 'yellow', 'yellow', 'red'   , 'red'   , 'yellow', 'yellow', 'yellow', 'yellow']
+];
+
+let arrayLV6 = [
     ['yellow', 'red'   , 'blue'  , 'blue'  , 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow'],
     ['yellow', 'red'   , 'red'   , 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow', 'yellow'],
     ['yellow', 'blue'  , 'yellow', 'yellow', 'blue'  , 'green' , 'green' , 'blue'  , 'blue'  , 'yellow'],
@@ -46,10 +79,11 @@ let arrayLV3 = [
     ['yellow', 'yellow', 'green' , 'green' , 'green' , 'red'   , 'blue'  , 'yellow', 'yellow', 'yellow']
 ];
 
-let array = [arrayLV0,arrayLV1, arrayLV2, arrayLV3];
+
+let array = [arrayLV0,arrayLV1, arrayLV2, arrayLV3, arrayLV4, arrayLV5,arrayLV6];
 let currentArrayIndex = 0;
 let currentArray = array[currentArrayIndex];
-let maxChangeCounts = [4,4, 4, 5];
+let maxChangeCounts = [4,3, 4, 4,4,4,5];
 let currentChangeCount = maxChangeCounts[currentArrayIndex];
 let originalArray = JSON.parse(JSON.stringify(array[currentArrayIndex]));
 
@@ -104,6 +138,7 @@ function drawGameForm(array) {
     document.getElementById("gameForm").innerHTML = gameFormData;
 }
 
+// hàm chọn màu để tô
 function setSelectedColor(button, color) {
     if (selectedButton) {
         selectedButton.classList.remove('active');
@@ -178,7 +213,7 @@ function resetGame() {
     selectedButton = null;
 }
 
-// Hàm để thay đổi tất cả các nút liên kết cùng màu
+// Hàm để thay đổi tất cả các nút liền kề cùng màu
 function floodFill(i, j, oldColor, newColor) {
     if (i < 0 || i >= currentArray.length || j < 0 || j >= 10) {
         return;
@@ -196,8 +231,9 @@ function floodFill(i, j, oldColor, newColor) {
     floodFill(i, j - 1, oldColor, newColor);
 }
 
+// hàm kiểm tra đã vượt qua level đó chưa
 function isLevelComplete() {
-    const targetColor = ['yellow','red', 'blue', 'red'][currentArrayIndex];
+    const targetColor = ['yellow','yellow','red','blue','green', 'yellow', 'red'][currentArrayIndex];
     for (let i = 0; i < currentArray.length; i++) {
         for (let j = 0; j < currentArray[i].length; j++) {
             if (currentArray[i][j] !== targetColor) {
@@ -215,8 +251,8 @@ function changeLevel(levelIndex) {
         originalArray = JSON.parse(JSON.stringify(currentArray));
         currentChangeCount = maxChangeCounts[currentArrayIndex];
         document.getElementById("changeCount").innerText = `Còn ${currentChangeCount} lượt`;
-        const levelColors = ["YELLOW", "RED", "BLUE", "RED"];
-        const levelNames = ["Level 0", "Level 1", "Level 2", "Level 3"];
+        const levelColors = ["YELLOW","YELLOW", "RED", "BLUE","GREEN","YELLOW", "RED"];
+        const levelNames = ["Level 0", "Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6"];
         const levelColor = levelColors[currentArrayIndex];
         const levelName = levelNames[currentArrayIndex];
         const levelElement = document.getElementById("level");
